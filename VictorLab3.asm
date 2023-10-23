@@ -7,12 +7,6 @@ CLK  EQU 22118400
 BAUD equ 115200
 BRG_VAL equ (0x100-(CLK/(16*BAUD)))
 
-	
-;---------------------------------------;
-; 			FROM mathtest.asm	 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
-
 ; These register definitions needed by 'math32.inc'
 DSEG at 30H
 	Result: ds 2
@@ -42,15 +36,6 @@ $LIST
 
 CSEG
 
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM mathtest.asm 			;
-;---------------------------------------;
-;---------------------------------------;
-; 			FROM slides			 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
-
 CE_ADC    EQU  P2.0
 MY_MOSI   EQU  P2.1 
 MY_MISO   EQU  P2.2
@@ -78,15 +63,6 @@ DO_SPI_G_LOOP:
 	clr MY_SCLK
 	djnz R2, DO_SPI_G_LOOP
 	ret
-
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM slides		 			;
-;---------------------------------------;
-;---------------------------------------;
-; 			FROM Hello.asm	 			;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
 
 ; Configure the serial port and baud rate
 InitSerialPort:
@@ -124,15 +100,6 @@ SendString:
 SendStringDone:
     ret
     
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM Hello.asm 				;
-;---------------------------------------;	
-;---------------------------------------;
-; 			FROM mathtest.asm	 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
-
 Left_blank mac
 	mov a, %0
 	anl a, #0xf0
@@ -205,15 +172,6 @@ MyProgram:
 	Set_Cursor(1, 1)
     Send_Constant_String(#Temp_flavour_text)
 
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM mathtest.asm 			;
-;---------------------------------------;
-;---------------------------------------;
-; 			FROM Piazza			 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
-	
 Send_BCD mac
 	push ar0
 	mov r0, %0
@@ -237,15 +195,6 @@ Send_BCD mac
 	pop acc
 	ret
 	
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM Piazza		 			;
-;---------------------------------------;
-;---------------------------------------;
-; 			FROM Piazza			 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
-
 ; Copy the 10-bits of the ADC conversion into the 32-bits of 'x'
 convert:
 	mov x+0, result+0
@@ -272,16 +221,7 @@ convert2:
 	Send_BCD(bcd)
     lcall Display_10_digit_bcd
 	ret 
-
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM Piazza		 			;
-;---------------------------------------;
-;---------------------------------------;
-; 			FROM mathtest.asm	 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
-    
+ 
 MainProgram:
 	mov sp, #07FH ; Initialize the stack pointer
 	
@@ -294,15 +234,6 @@ MainProgram:
     
     lcall InitSerialPort
     lcall SendString
-
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM mathtest.asm 			;
-;---------------------------------------;
-;---------------------------------------;
-; 			FROM slides			 		;
-;		 	 	BEGIN					;
-;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
 
 Forever:
 	clr CE_ADC
@@ -327,10 +258,5 @@ Forever:
     mov a, #'\n'
     lcall putchar
 	sjmp Forever
-	
-;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
-; 				END			 			;
-;		 	FROM slides		 			;
-;---------------------------------------;
-    
+
 END
