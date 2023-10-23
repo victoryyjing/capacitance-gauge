@@ -1,0 +1,699 @@
+                 -1   $MODLP51RC2
+0000              1   ;--------------------------------------------------------
+0000              2   ; Register and bit definitions for the AT89LP51RC2/RB2
+0000              3   ;--------------------------------------------------------
+0000              4   ; Special Function Registers
+0000              5   ;--------------------------------------------------------
+0000              6   ACC            DATA 0xe0
+0000              7   B              DATA 0xf0
+0000              8   PSW            DATA 0xd0
+0000              9   SP             DATA 0x81
+0000             10   SPX            DATA 0xef
+0000             11   DPL            DATA 0x82
+0000             12   DPH            DATA 0x83
+0000             13   DPLB           DATA 0xd4
+0000             14   DPHB           DATA 0xd5
+0000             15   PAGE           DATA 0xf6
+0000             16   AX             DATA 0xe1
+0000             17   BX             DATA 0xf7
+0000             18   DSPR           DATA 0xe2
+0000             19   FIRD           DATA 0xe3
+0000             20   MACL           DATA 0xe4
+0000             21   MACH           DATA 0xe5
+0000             22   PCON           DATA 0x87
+0000             23   AUXR           DATA 0x8e
+0000             24   AUXR1          DATA 0xa2
+0000             25   DPCF           DATA 0xa1
+0000             26   CKRL           DATA 0x97
+0000             27   CKCKON0        DATA 0x8f
+0000             28   CKCKON1        DATA 0xaf
+0000             29   CKSEL          DATA 0x85
+0000             30   CLKREG         DATA 0xae
+0000             31   OSCCON         DATA 0x86
+0000             32   IE             DATA 0xa8
+0000             33   IEN0           DATA 0xa8
+0000             34   IEN1           DATA 0xb1
+0000             35   IPH0           DATA 0xb7
+0000             36   IP             DATA 0xb8
+0000             37   IPL0           DATA 0xb8
+0000             38   IPH1           DATA 0xb3
+0000             39   IPL1           DATA 0xb2
+0000             40   P0             DATA 0x80
+0000             41   P1             DATA 0x90
+0000             42   P2             DATA 0xa0
+0000             43   P3             DATA 0xb0
+0000             44   P4             DATA 0xc0
+0000             45   P0M0           DATA 0xe6
+0000             46   P0M1           DATA 0xe7
+0000             47   P1M0           DATA 0xd6
+0000             48   P1M1           DATA 0xd7
+0000             49   P2M0           DATA 0xce
+0000             50   P2M1           DATA 0xcf
+0000             51   P3M0           DATA 0xc6
+0000             52   P3M1           DATA 0xc7
+0000             53   P4M0           DATA 0xbe
+0000             54   P4M1           DATA 0xbf
+0000             55   SCON           DATA 0x98
+0000             56   SBUF           DATA 0x99
+0000             57   SADEN          DATA 0xb9
+0000             58   SADDR          DATA 0xa9
+0000             59   BDRCON         DATA 0x9b
+0000             60   BRL            DATA 0x9a
+0000             61   TCON           DATA 0x88
+0000             62   TMOD           DATA 0x89
+0000             63   TCONB          DATA 0x91
+0000             64   TL0            DATA 0x8a
+0000             65   TH0            DATA 0x8c
+0000             66   TL1            DATA 0x8b
+0000             67   TH1            DATA 0x8d
+0000             68   RL0            DATA 0xf2
+0000             69   RL1            DATA 0xf3
+0000             70   RH0            DATA 0xf4
+0000             71   RH1            DATA 0xf5
+0000             72   WDTRST         DATA 0xa6
+0000             73   WDTPRG         DATA 0xa7
+0000             74   T2CON          DATA 0xc8
+0000             75   T2MOD          DATA 0xc9
+0000             76   RCAP2H         DATA 0xcb
+0000             77   RCAP2L         DATA 0xca
+0000             78   TH2            DATA 0xcd
+0000             79   TL2            DATA 0xcc
+0000             80   SPCON          DATA 0xc3
+0000             81   SPSTA          DATA 0xc4
+0000             82   SPDAT          DATA 0xc5
+0000             83   SSCON          DATA 0x93
+0000             84   SSCS           DATA 0x94
+0000             85   SSDAT          DATA 0x95
+0000             86   SSADR          DATA 0x96
+0000             87   KBLS           DATA 0x9c
+0000             88   KBE            DATA 0x9d
+0000             89   KBF            DATA 0x9e
+0000             90   KBMOD          DATA 0x9f
+0000             91   BMSEL          DATA 0x92
+0000             92   FCON           DATA 0xd1
+0000             93   EECON          DATA 0xd2
+0000             94   ACSRA          DATA 0xa3
+0000             95   ACSRB          DATA 0xab
+0000             96   AREF           DATA 0xbd
+0000             97   DADC           DATA 0xa4
+0000             98   DADI           DATA 0xa5
+0000             99   DADL           DATA 0xac
+0000            100   DADH           DATA 0xad
+0000            101   CCON           DATA 0xd8
+0000            102   CMOD           DATA 0xd9
+0000            103   CL             DATA 0xe9
+0000            104   CH             DATA 0xf9
+0000            105   CCAPM0         DATA 0xda
+0000            106   CCAPM1         DATA 0xdb
+0000            107   CCAPM2         DATA 0xdc
+0000            108   CCAPM3         DATA 0xdd
+0000            109   CCAPM4         DATA 0xde
+0000            110   CCAP0H         DATA 0xfa
+0000            111   CCAP1H         DATA 0xfb
+0000            112   CCAP2H         DATA 0xfc
+0000            113   CCAP3H         DATA 0xfd
+0000            114   CCAP4H         DATA 0xfe
+0000            115   CCAP0L         DATA 0xea
+0000            116   CCAP1L         DATA 0xeb
+0000            117   CCAP2L         DATA 0xec
+0000            118   CCAP3L         DATA 0xed
+0000            119   CCAP4L         DATA 0xee
+0000            120   ;--------------------------------------------------------
+0000            121   ; special function bits
+0000            122   ;--------------------------------------------------------
+0000            123   P              BIT 0xd0
+0000            124   F1             BIT 0xd1
+0000            125   OV             BIT 0xd2
+0000            126   RS0            BIT 0xd3
+0000            127   RS1            BIT 0xd4
+0000            128   F0             BIT 0xd5
+0000            129   AC             BIT 0xd6
+0000            130   CY             BIT 0xd7
+0000            131   EX0            BIT 0xa8
+0000            132   ET0            BIT 0xa9
+0000            133   EX1            BIT 0xaa
+0000            134   ET1            BIT 0xab
+0000            135   ES             BIT 0xac
+0000            136   ET2            BIT 0xad
+0000            137   EC             BIT 0xae
+0000            138   EA             BIT 0xaf
+0000            139   PX0            BIT 0xb8
+0000            140   PT0            BIT 0xb9
+0000            141   PX1            BIT 0xba
+0000            142   PT1            BIT 0xbb
+0000            143   PS             BIT 0xbc
+0000            144   PT2            BIT 0xbd
+0000            145   IP0D           BIT 0xbf
+0000            146   PPCL           BIT 0xbe
+0000            147   PT2L           BIT 0xbd
+0000            148   PLS            BIT 0xbc
+0000            149   PT1L           BIT 0xbb
+0000            150   PX1L           BIT 0xba
+0000            151   PT0L           BIT 0xb9
+0000            152   PX0L           BIT 0xb8
+0000            153   RXD            BIT 0xb0
+0000            154   TXD            BIT 0xb1
+0000            155   INT0           BIT 0xb2
+0000            156   INT1           BIT 0xb3
+0000            157   T0             BIT 0xb4
+0000            158   T1             BIT 0xb5
+0000            159   WR             BIT 0xb6
+0000            160   RD             BIT 0xb7
+0000            161   RI             BIT 0x98
+0000            162   TI             BIT 0x99
+0000            163   RB8            BIT 0x9a
+0000            164   TB8            BIT 0x9b
+0000            165   REN            BIT 0x9c
+0000            166   SM2            BIT 0x9d
+0000            167   SM1            BIT 0x9e
+0000            168   SM0            BIT 0x9f
+0000            169   IT0            BIT 0x88
+0000            170   IE0            BIT 0x89
+0000            171   IT1            BIT 0x8a
+0000            172   IE1            BIT 0x8b
+0000            173   TR0            BIT 0x8c
+0000            174   TF0            BIT 0x8d
+0000            175   TR1            BIT 0x8e
+0000            176   TF1            BIT 0x8f
+0000            177   CP_RL2         BIT 0xc8
+0000            178   C_T2           BIT 0xc9
+0000            179   TR2            BIT 0xca
+0000            180   EXEN2          BIT 0xcb
+0000            181   TCLK           BIT 0xcc
+0000            182   RCLK           BIT 0xcd
+0000            183   EXF2           BIT 0xce
+0000            184   TF2            BIT 0xcf
+0000            185   CF             BIT 0xdf
+0000            186   CR             BIT 0xde
+0000            187   CCF4           BIT 0xdc
+0000            188   CCF3           BIT 0xdb
+0000            189   CCF2           BIT 0xda
+0000            190   CCF1           BIT 0xd9
+0000            191   CCF0           BIT 0xd8
+0000              2   
+0000              3   org 0000H
+0000 020535       4      ljmp MainProgram
+0003              5      
+0003              6   CLK  EQU 22118400
+0003              7   BAUD equ 115200
+0003              8   BRG_VAL equ (0x100-(CLK/(16*BAUD)))
+0003              9   
+0003             10            
+0003             11   ;---------------------------------------;
+0003             12   ;                        FROM mathtest.asm                       ;
+0003             13   ;                                BEGIN                                   ;
+0003             14   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+0003             15   
+0003             16   ; These register definitions needed by 'math32.inc'
+0030             17   DSEG at 30H
+0030             18            Result: ds 2
+0032             19            x:              ds 4
+0036             20            y:              ds 4
+003A             21            bcd:    ds 4
+003E             22   
+0000             23   BSEG
+0000             24            mf:     dbit 1
+0001             25   
+                546   $LIST
+                 27   $LIST
+0273             29   
+0273             30   ; These 'equ' must match the hardware wiring
+0273             31            LCD_RS equ P3.2
+0273             32   ;LCD_RW equ PX.X ; Not used in this code, connect the pin to GND
+0273             33            LCD_E           equ P3.3
+0273             34            LCD_D4          equ P3.4
+0273             35            LCD_D5          equ P3.5
+0273             36            LCD_D6          equ P3.6
+0273             37            LCD_D7          equ P3.7
+0273             38            
+                 40   	$LIST
+031F             42   
+031F             43   CSEG
+031F             44   
+031F             45   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+031F             46   ;                                END                                             ;
+031F             47   ;                        FROM mathtest.asm                       ;
+031F             48   ;---------------------------------------;
+031F             49   ;---------------------------------------;
+031F             50   ;                        FROM slides                                     ;
+031F             51   ;                                BEGIN                                   ;
+031F             52   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+031F             53   
+031F             54   CE_ADC    EQU  P2.0
+031F             55   MY_MOSI   EQU  P2.1 
+031F             56   MY_MISO   EQU  P2.2
+031F             57   MY_SCLK   EQU  P2.3
+031F             58   
+031F             59   INI_SPI:
+031F D2A2        60            setb MY_MISO ; Make MISO an input pin
+0321 C2A3        61            clr MY_SCLK           ; Mode 0,0 default
+0323 22          62            ret
+0324             63            
+0324             64   DO_SPI_G:
+0324 7900        65            mov R1, #0 ; Received byte stored in R1
+0326 7A08        66            mov R2, #8            ; Loop counter (8-bits)
+0328             67            
+0328             68   DO_SPI_G_LOOP:
+0328 E8          69            mov a, R0             ; Byte to write is in R0
+0329 33          70            rlc a                 ; Carry flag has bit to write
+032A F8          71            mov R0, a
+032B 92A1        72            mov MY_MOSI, c
+032D D2A3        73            setb MY_SCLK          ; Transmit
+032F A2A2        74            mov c, MY_MISO        ; Read received bit
+0331 E9          75            mov a, R1             ; Save received bit in R1
+0332 33          76            rlc a
+0333 F9          77            mov R1, a
+0334 C2A3        78            clr MY_SCLK
+0336 DAF0        79            djnz R2, DO_SPI_G_LOOP
+0338 22          80            ret
+0339             81   
+0339             82   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+0339             83   ;                                END                                             ;
+0339             84   ;                        FROM slides                                     ;
+0339             85   ;---------------------------------------;
+0339             86   ;---------------------------------------;
+0339             87   ;                        FROM Hello.asm                          ;
+0339             88   ;                                BEGIN                                   ;
+0339             89   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+0339             90   
+0339             91   ; Configure the serial port and baud rate
+0339             92   InitSerialPort:
+0339             93       ; Since the reset button bounces, we need to wait a bit before
+0339             94       ; sending messages, otherwise we risk displaying gibberish!
+0339 79DE        95       mov R1, #222
+033B 78A6        96       mov R0, #166
+033D D8FE        97       djnz R0, $   ; 3 cycles->3*45.21123ns*166=22.51519us
+033F D9FA        98       djnz R1, $-4 ; 22.51519us*222=4.998ms
+0341             99       
+0341            100       ; Now we can proceed with the configuration
+0341 438780     101            orl PCON ,#0x80
+0344 759852     102            mov SCON, #0x52
+0347 759B00     103            mov BDRCON, #0x00
+034A 759AF4     104            mov BRL, #BRG_VAL
+034D 759B1E     105            mov BDRCON, #0x1E ; BDRCON=BRR|TBCK|RBCK|SPD;
+0350 22         106       ret
+0351            107       
+0351            108   ; Send a character using the serial port
+0351            109   putchar:
+0351 3099FD     110       jnb TI, putchar
+0354 C299       111       clr TI
+0356 F599       112       mov SBUF, a
+0358 22         113       ret
+0359            114       
+0359            115   ; Send a constant-zero-terminated string using the serial port
+0359            116   SendString:
+0359 E4         117       clr A
+035A 93         118       movc A, @A+DPTR
+035B 6006       119       jz SendStringDone
+035D 120351     120       lcall putchar
+0360 A3         121       inc DPTR
+0361 80F6       122       sjmp SendString
+0363            123       
+0363            124   SendStringDone:
+0363 22         125       ret
+0364            126       
+0364            127   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+0364            128   ;                                END                                             ;
+0364            129   ;                        FROM Hello.asm                                  ;
+0364            130   ;---------------------------------------;        
+0364            131   ;---------------------------------------;
+0364            132   ;                        FROM mathtest.asm                       ;
+0364            133   ;                                BEGIN                                   ;
+0364            134   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+0364            135   
+                136   Left_blank mac
+                137   	mov a, %0
+                138   	anl a, #0xf0
+                139   	swap a
+                140   	jz Left_blank_%M_a
+                141   	ljmp %1
+                142   	
+                143   Left_blank_%M_a:
+                144   	Display_char(#' ')
+                145   	mov a, %0
+                146   	anl a, #0x0f
+                147   	jz Left_blank_%M_b
+                148   	ljmp %1
+                149   	
+                150   Left_blank_%M_b:
+                151   	Display_char(#' ')
+                152   	
+                153   endmac
+0364            154   
+0364            155   ; Sends 10-digit BCD number in bcd to the LCD
+0364            156   Display_10_digit_BCD:
+0364 C0E0       157            push acc
+0366 7407       157            mov a, #7
+0368 14         157            dec a
+0369 120302     157            lcall ?Set_Cursor_2 ; Select column and row
+036C D0E0       157            pop acc
+036E C000       158            push ar0
+0370 A83E       158            mov r0, bcd+4
+0372 120309     158            lcall ?Display_BCD
+0375 D000       158            pop ar0
+0377 C000       159            push ar0
+0379 A83D       159            mov r0, bcd+3
+037B 120309     159            lcall ?Display_BCD
+037E D000       159            pop ar0
+0380 C000       160            push ar0
+0382 A83C       160            mov r0, bcd+2
+0384 120309     160            lcall ?Display_BCD
+0387 D000       160            pop ar0
+0389 C000       161            push ar0
+038B A83B       161            mov r0, bcd+1
+038D 120309     161            lcall ?Display_BCD
+0390 D000       161            pop ar0
+0392 C000       162            push ar0
+0394 A83A       162            mov r0, bcd+0
+0396 120309     162            lcall ?Display_BCD
+0399 D000       162            pop ar0
+039B            163            ; Replace all the zeros to the left with blanks
+039B C0E0       164            push acc
+039D 7407       164            mov a, #7
+039F 14         164            dec a
+03A0 120302     164            lcall ?Set_Cursor_2 ; Select column and row
+03A3 D0E0       164            pop acc
+03A5 E53E       165            mov a, bcd+4
+03A7 54F0       165            anl a, #0xf0
+03A9 C4         165            swap a
+03AA 6003       165            jz Left_blank_15_a
+03AC 020449     165            ljmp skip_blank
+03AF            165            
+03AF            165   Left_blank_15_a:
+03AF C0E0       165            push acc
+03B1 7420       165            mov a, #' '
+03B3 1202C3     165            lcall ?WriteData
+03B6 D0E0       165            pop acc
+03B8 E53E       165            mov a, bcd+4
+03BA 540F       165            anl a, #0x0f
+03BC 6003       165            jz Left_blank_15_b
+03BE 020449     165            ljmp skip_blank
+03C1            165            
+03C1            165   Left_blank_15_b:
+03C1 C0E0       165            push acc
+03C3 7420       165            mov a, #' '
+03C5 1202C3     165            lcall ?WriteData
+03C8 D0E0       165            pop acc
+03CA            165            
+03CA E53D       166            mov a, bcd+3
+03CC 54F0       166            anl a, #0xf0
+03CE C4         166            swap a
+03CF 6003       166            jz Left_blank_18_a
+03D1 020449     166            ljmp skip_blank
+03D4            166            
+03D4            166   Left_blank_18_a:
+03D4 C0E0       166            push acc
+03D6 7420       166            mov a, #' '
+03D8 1202C3     166            lcall ?WriteData
+03DB D0E0       166            pop acc
+03DD E53D       166            mov a, bcd+3
+03DF 540F       166            anl a, #0x0f
+03E1 6003       166            jz Left_blank_18_b
+03E3 020449     166            ljmp skip_blank
+03E6            166            
+03E6            166   Left_blank_18_b:
+03E6 C0E0       166            push acc
+03E8 7420       166            mov a, #' '
+03EA 1202C3     166            lcall ?WriteData
+03ED D0E0       166            pop acc
+03EF            166            
+03EF E53C       167            mov a, bcd+2
+03F1 54F0       167            anl a, #0xf0
+03F3 C4         167            swap a
+03F4 6003       167            jz Left_blank_21_a
+03F6 020449     167            ljmp skip_blank
+03F9            167            
+03F9            167   Left_blank_21_a:
+03F9 C0E0       167            push acc
+03FB 7420       167            mov a, #' '
+03FD 1202C3     167            lcall ?WriteData
+0400 D0E0       167            pop acc
+0402 E53C       167            mov a, bcd+2
+0404 540F       167            anl a, #0x0f
+0406 6003       167            jz Left_blank_21_b
+0408 020449     167            ljmp skip_blank
+040B            167            
+040B            167   Left_blank_21_b:
+040B C0E0       167            push acc
+040D 7420       167            mov a, #' '
+040F 1202C3     167            lcall ?WriteData
+0412 D0E0       167            pop acc
+0414            167            
+0414 E53B       168            mov a, bcd+1
+0416 54F0       168            anl a, #0xf0
+0418 C4         168            swap a
+0419 6003       168            jz Left_blank_24_a
+041B 020449     168            ljmp skip_blank
+041E            168            
+041E            168   Left_blank_24_a:
+041E C0E0       168            push acc
+0420 7420       168            mov a, #' '
+0422 1202C3     168            lcall ?WriteData
+0425 D0E0       168            pop acc
+0427 E53B       168            mov a, bcd+1
+0429 540F       168            anl a, #0x0f
+042B 6003       168            jz Left_blank_24_b
+042D 020449     168            ljmp skip_blank
+0430            168            
+0430            168   Left_blank_24_b:
+0430 C0E0       168            push acc
+0432 7420       168            mov a, #' '
+0434 1202C3     168            lcall ?WriteData
+0437 D0E0       168            pop acc
+0439            168            
+0439 E53A       169            mov a, bcd+0
+043B 54F0       170            anl a, #0f0h
+043D C4         171            swap a
+043E 7009       172            jnz skip_blank
+0440 C0E0       173            push acc
+0442 7420       173            mov a, #' '
+0444 1202C3     173            lcall ?WriteData
+0447 D0E0       173            pop acc
+0449            174   
+0449            175   skip_blank:
+0449 22         176            ret
+044A            177   
+044A            178   ; We can display a number any way we want.  In this case with
+044A            179   ; four decimal places.
+044A            180   Display_formated_BCD:
+044A C0E0       181            push acc
+044C 7407       181            mov a, #7
+044E 14         181            dec a
+044F 120302     181            lcall ?Set_Cursor_2 ; Select column and row
+0452 D0E0       181            pop acc
+0454 C0E0       182            push acc
+0456 7420       182            mov a, #' '
+0458 1202C3     182            lcall ?WriteData
+045B D0E0       182            pop acc
+045D C000       183            push ar0
+045F A83D       183            mov r0, bcd+3
+0461 120309     183            lcall ?Display_BCD
+0464 D000       183            pop ar0
+0466 C000       184            push ar0
+0468 A83C       184            mov r0, bcd+2
+046A 120309     184            lcall ?Display_BCD
+046D D000       184            pop ar0
+046F C0E0       185            push acc
+0471 742E       185            mov a, #'.'
+0473 1202C3     185            lcall ?WriteData
+0476 D0E0       185            pop acc
+0478 C000       186            push ar0
+047A A83B       186            mov r0, bcd+1
+047C 120309     186            lcall ?Display_BCD
+047F D000       186            pop ar0
+0481 C000       187            push ar0
+0483 A83A       187            mov r0, bcd+0
+0485 120309     187            lcall ?Display_BCD
+0488 D000       187            pop ar0
+048A 22         188            ret
+048B            189            
+048B            190   wait_for_P4_5:
+048B 20C5FD     191            jb P4.5, $ ; loop while the button is not pressed
+048E C002       192            push AR2
+0490 7A32       192            mov R2, #50
+0492 12027E     192            lcall ?Wait_Milli_Seconds
+0495 D002       192            pop AR2 ; debounce time
+0497 20C5F1     193            jb P4.5, wait_for_P4_5 ; it was a bounce, try again
+049A 30C5FD     194            jnb P4.5, $ ; loop while the button is pressed
+049D 22         195            ret
+049E            196            
+049E 43757272   197   Temp_flavour_text:  db 'Current Temp:', 0
+     656E7420
+     54656D70
+     3A00
+04AC            198   
+04AC            199   MyProgram:
+04AC 75817F     200            mov sp, #07FH ; Initialize the stack pointer
+04AF            201            ; Configure P0 in bidirectional mode
+04AF 75E600     202       mov P0M0, #0
+04B2 75E700     203       mov P0M1, #0
+04B5 1202CD     204       lcall LCD_4BIT
+04B8 C0E0       205            push acc
+04BA 7401       205            mov a, #1
+04BC 14         205            dec a
+04BD 120304     205            lcall ?Set_Cursor_1 ; Select column and row
+04C0 D0E0       205            pop acc
+04C2 C083       206            push dph
+04C4 C082       206            push dpl
+04C6 C0E0       206            push acc
+04C8 90049E     206            mov dptr, #Temp_flavour_text
+04CB 1202F7     206            lcall ?Send_Constant_String
+04CE D0E0       206            pop acc
+04D0 D082       206            pop dpl
+04D2 D083       206            pop dph
+04D4            207   
+04D4            208   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+04D4            209   ;                                END                                             ;
+04D4            210   ;                        FROM mathtest.asm                       ;
+04D4            211   ;---------------------------------------;
+04D4            212   ;---------------------------------------;
+04D4            213   ;                        FROM Piazza                                     ;
+04D4            214   ;                                BEGIN                                   ;
+04D4            215   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+04D4            216            
+                217   Send_BCD mac
+                218   	push ar0
+                219   	mov r0, %0
+                220   	lcall ?Send_BCD
+                221   	pop ar0
+                222   	endmac
+04D4            223   
+04D4            224   ?Send_BCD:
+04D4 C0E0       225            push acc
+04D6            226            ; Send most significant digit
+04D6 E8         227            mov a, r0
+04D7 C4         228            swap a
+04D8 540F       229            anl a, #0fh
+04DA 4430       230            orl a, #30h
+04DC 120351     231            lcall putchar
+04DF            232            ; Send least significant digit
+04DF E8         233            mov a, r0
+04E0 540F       234            anl a, #0fh
+04E2 4430       235            orl a, #30h
+04E4 120351     236            lcall putchar
+04E7 D0E0       237            pop acc
+04E9 22         238            ret
+04EA            239            
+04EA            240   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+04EA            241   ;                                END                                             ;
+04EA            242   ;                        FROM Piazza                                     ;
+04EA            243   ;---------------------------------------;
+04EA            244   ;---------------------------------------;
+04EA            245   ;                        FROM Piazza                                     ;
+04EA            246   ;                                BEGIN                                   ;
+04EA            247   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+04EA            248   
+04EA            249   ; Copy the 10-bits of the ADC conversion into the 32-bits of 'x'
+04EA            250   convert:
+04EA 853032     251            mov x+0, result+0
+04ED 853133     252            mov x+1, result+1
+04F0 753400     253            mov x+2, #0
+04F3 753500     254            mov x+3, #0
+04F6            255            
+04F6            256            ; Multiply by 410
+04F6 75369A     257            mov y+0, #low (410 % 0x10000) 
+04F9 753701     257            mov y+1, #high(410 % 0x10000) 
+04FC 753800     257            mov y+2, #low (410 / 0x10000) 
+04FF 753900     257            mov y+3, #high(410 / 0x10000) 
+0502 12017D     258            lcall mul32
+0505            259            
+0505            260            ; Divide result by 1023
+0505 7536FF     261            mov y+0, #low (1023 % 0x10000) 
+0508 753703     261            mov y+1, #high(1023 % 0x10000) 
+050B 753800     261            mov y+2, #low (1023 / 0x10000) 
+050E 753900     261            mov y+3, #high(1023 / 0x10000) 
+0511 12020A     262            lcall div32
+0514            263            
+0514            264            ; Subtract 273 from result
+0514 753611     265            mov y+0, #low (273 % 0x10000) 
+0517 753701     265            mov y+1, #high(273 % 0x10000) 
+051A 753800     265            mov y+2, #low (273 / 0x10000) 
+051D 753900     265            mov y+3, #high(273 / 0x10000) 
+0520 1200E9     266            lcall sub32
+0523 8000       267            sjmp convert2
+0525            268            
+0525            269            ; The 4-bytes of x have the temperature in binary
+0525            270   convert2:
+0525 120003     271            lcall hex2bcd
+0528 C000       272            push ar0
+052A A83A       272            mov r0, bcd
+052C 1204D4     272            lcall ?Send_BCD
+052F D000       272            pop ar0
+0531 120364     273       lcall Display_10_digit_bcd
+0534 22         274            ret 
+0535            275   
+0535            276   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+0535            277   ;                                END                                             ;
+0535            278   ;                        FROM Piazza                                     ;
+0535            279   ;---------------------------------------;
+0535            280   ;---------------------------------------;
+0535            281   ;                        FROM mathtest.asm                       ;
+0535            282   ;                                BEGIN                                   ;
+0535            283   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+0535            284       
+0535            285   MainProgram:
+0535 75817F     286            mov sp, #07FH ; Initialize the stack pointer
+0538            287            
+0538            288            ; Configure P0 in bidirectional mode
+0538 75E600     289       mov P0M0, #0
+053B 75E700     290       mov P0M1, #0
+053E 1202CD     291       lcall LCD_4BIT
+0541 C0E0       292            push acc
+0543 7401       292            mov a, #1
+0545 14         292            dec a
+0546 120304     292            lcall ?Set_Cursor_1 ; Select column and row
+0549 D0E0       292            pop acc
+054B C083       293            push dph
+054D C082       293            push dpl
+054F C0E0       293            push acc
+0551 90049E     293            mov dptr, #Temp_flavour_text
+0554 1202F7     293            lcall ?Send_Constant_String
+0557 D0E0       293            pop acc
+0559 D082       293            pop dpl
+055B D083       293            pop dph
+055D            294       
+055D 120339     295       lcall InitSerialPort
+0560 120359     296       lcall SendString
+0563            297   
+0563            298   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+0563            299   ;                                END                                             ;
+0563            300   ;                        FROM mathtest.asm                       ;
+0563            301   ;---------------------------------------;
+0563            302   ;---------------------------------------;
+0563            303   ;                        FROM slides                                     ;
+0563            304   ;                                BEGIN                                   ;
+0563            305   ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv;
+0563            306   
+0563            307   Forever:
+0563 C2A0       308            clr CE_ADC
+0565 7801       309            mov R0, #00000001B      ; Start bit:1
+0567 120324     310            lcall DO_SPI_G
+056A            311            
+056A 7880       312            mov R0, #10000000B      ; Single ended, read channel 0
+056C 120324     313            lcall DO_SPI_G
+056F E9         314            mov a, R1               ; R1 contains bits 8 and 9
+0570 5403       315            anl a, #00000011B       ; We need only the two least significant bits
+0572 F531       316            mov Result+1, a         ; Save result high.
+0574            317            
+0574 7855       318            mov R0, #55H            ; It doesn't matter what we transmit...
+0576 120324     319            lcall DO_SPI_G
+0579 8930       320            mov Result, R1          ; R1 contains bits 0 to 7.  Save result low.
+057B D2A0       321            setb CE_ADC
+057D C002       322            push AR2
+057F 7AFA       322            mov R2, #250
+0581 12027E     322            lcall ?Wait_Milli_Seconds
+0584 D002       322            pop AR2
+0586            323            
+0586 1204EA     324            lcall convert                                                                                                           ; COULD BE NEW
+0589 740D       325            mov a, #'\r'
+058B 120351     326       lcall putchar
+058E 740A       327       mov a, #'\n'
+0590 120351     328       lcall putchar
+0593 80CE       329            sjmp Forever
+0595            330            
+0595            331   ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+0595            332   ;                                END                                             ;
+0595            333   ;                        FROM slides                                     ;
+0595            334   ;---------------------------------------;
+0595            335       
+0595            336   END
